@@ -20,8 +20,8 @@ const defaultFormData: FormData = {
 
 const OrderShema = Yup.object().shape({
     title: Yup.string().min(3,'Min length 3').max(50,'Max length 50').required('Required field'),
-    content: Yup.string().max(500,'Max length 500').oneOf(['Todo','Work','Personal','Meeting','Shopping']).required(),
-    tag: Yup.string().required('Required field'),
+    content: Yup.string().max(500,'Max length 500'),
+    tag: Yup.string().required('Required field').oneOf(['Todo','Work','Personal','Meeting','Shopping']),
 })
 
 interface NoteFormProps {
