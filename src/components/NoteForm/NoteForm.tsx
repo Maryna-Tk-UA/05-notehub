@@ -20,7 +20,7 @@ const defaultFormData: FormData = {
 
 const OrderShema = Yup.object().shape({
     title: Yup.string().min(3,'Min length 3').max(50,'Max length 50').required('Required field'),
-    content: Yup.string().max(500,'Max length 500'),
+    content: Yup.string().max(500,'Max length 500').oneOf(['Todo','Work','Personal','Meeting','Shopping']).required(),
     tag: Yup.string().required('Required field'),
 })
 
@@ -41,8 +41,8 @@ function NoteForm({ onClose }: NoteFormProps) {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
       onClose();
     },
-    onError: (error) => {
-      toast.error(`${error}`, {
+    onError: () => {
+      toast.error("Something went wrong", {
           position: "top-center",
           duration: 2500,
         });

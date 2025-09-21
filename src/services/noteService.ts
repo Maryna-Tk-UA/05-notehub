@@ -3,22 +3,23 @@ import type { Note, NoteTag } from "../types/note";
 
 const BASE_URL = "https://notehub-public.goit.study/api/notes";
 const ACCESS_TOKEN = import.meta.env.VITE_NOTEHUB_TOKEN as string;
+const PER_PAGE = 12;
 
 interface fetchNotesProps {
     page: number;
     searchValue: string;
 }
 
-interface fetchNotesResponce {
+interface fetchNotesResponse {
     notes: Note[];
     totalPages: number;
 }
 
 export async function fetchNotes({ page, searchValue }: fetchNotesProps) {
-    const { data } = await axios.get<fetchNotesResponce>(`${BASE_URL}`, {
+    const { data } = await axios.get<fetchNotesResponse>(`${BASE_URL}`, {
         params: {
             page,
-            perPage: 12,
+            perPage: PER_PAGE,
             search: searchValue,
         },
         headers: {

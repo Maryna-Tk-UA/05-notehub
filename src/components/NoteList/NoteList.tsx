@@ -20,8 +20,8 @@ function NoteList({ notes }: NoteListProps) {
       });
       queryClient.invalidateQueries({ queryKey: ['notes'] });
       },
-    onError: (error) => {
-      toast.error(`${error}`, {
+    onError: () => {
+      toast.error("Something went wrong", {
           position: "top-center",
           duration: 2500,
         });
