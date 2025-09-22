@@ -11,7 +11,7 @@ import { Toaster } from "react-hot-toast";
 import { useDebouncedCallback } from 'use-debounce';
 
 function App() {
-  const [curPage, setCurPage] = useState(0) 
+  const [curPage, setCurPage] = useState(1) 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [searchValue, setSearchValue] = useState('')
 
@@ -20,13 +20,13 @@ function App() {
 
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ['notes', curPage, searchValue],
-    queryFn: () => fetchNotes({ page: curPage + 1, searchValue }), //це я передаю на бекенд запит. якщо натисну 3,то selected=2, отже curPage=2 і у запит пішло page = curPage + 1 = 3
+    queryFn: () => fetchNotes({ page: curPage, searchValue }), //це я передаю на бекенд запит. якщо натисну 3,то selected=2, отже curPage=2 і у запит пішло page = curPage + 1 = 3
     placeholderData: keepPreviousData,
   }) 
 
   const handleSearch = useDebouncedCallback((value: string) => {
     setSearchValue(value);
-    setCurPage(0)
+    setCurPage(1)
   }, 500)
 
   return (

@@ -11,8 +11,8 @@ function Pagination({ totalPages, curPage, onChange }: PaginationProps) {
   return (
     <ReactPaginate
           pageCount={totalPages}
-          forcePage={curPage}
-          onPageChange={({ selected }) => onChange(selected)}
+          forcePage={curPage - 1}
+          onPageChange={({ selected }) => onChange(selected + 1)}
           breakLabel="..."
           nextLabel="🠆"
           previousLabel="🠄"
